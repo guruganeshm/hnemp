@@ -127,8 +127,9 @@ router.post('/', auth.required, function(req, res, next) {
   User.findById(req.payload.id).then(function(user){
     if (!user) { return res.sendStatus(401); }
 
-    var article = new Article(req.body.article);
+    var article = new Article();
 
+    article.title = req.body.title;
     article.author = user;
 
     return article.save().then(function(){

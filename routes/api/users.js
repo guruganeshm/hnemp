@@ -17,20 +17,20 @@ router.put('/user', auth.required, function(req, res, next){
     if(!user){ return res.sendStatus(401); }
 
     // only update fields that were actually passed...
-    if(typeof req.body.user.username !== 'undefined'){
-      user.username = req.body.user.username;
+    if(typeof req.body.username !== 'undefined'){
+      user.username = req.body.username;
     }
-    if(typeof req.body.user.email !== 'undefined'){
-      user.email = req.body.user.email;
+    if(typeof req.body.email !== 'undefined'){
+      user.email = req.body.email;
     }
-    if(typeof req.body.user.bio !== 'undefined'){
-      user.bio = req.body.user.bio;
+    if(typeof req.body.bio !== 'undefined'){
+      user.bio = req.body.bio;
     }
-    if(typeof req.body.user.image !== 'undefined'){
-      user.image = req.body.user.image;
+    if(typeof req.body.image !== 'undefined'){
+      user.image = req.body.image;
     }
-    if(typeof req.body.user.password !== 'undefined'){
-      user.setPassword(req.body.user.password);
+    if(typeof req.body.password !== 'undefined'){
+      user.setPassword(req.body.password);
     }
 
     return user.save().then(function(){
@@ -40,11 +40,11 @@ router.put('/user', auth.required, function(req, res, next){
 });
 
 router.post('/users/login', function(req, res, next){
-  if(!req.body.user.email){
+  if(!req.body.email){
     return res.status(422).json({errors: {email: "can't be blank"}});
   }
 
-  if(!req.body.user.password){
+  if(!req.body.password){
     return res.status(422).json({errors: {password: "can't be blank"}});
   }
 
@@ -63,9 +63,9 @@ router.post('/users/login', function(req, res, next){
 router.post('/users', function(req, res, next){
   var user = new User();
 
-  user.username = req.body.user.username;
-  user.email = req.body.user.email;
-  user.setPassword(req.body.user.password);
+  user.username = req.body.username;
+  user.email = req.body.email;
+  user.setPassword(req.body.password);
 
   user.save().then(function(){
     return res.json({user: user.toAuthJSON()});
