@@ -25,42 +25,42 @@ app.use(bodyParser.json());
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
-// app.use(session(
-//   { 
-//     secret: 'conduit',
-//     cookie: { maxAge: 60000 },
-//     resave: false,
-//     saveUninitialized: false  
-//   }
-// ));
+app.use(session(
+  { 
+    secret: 'ThisIsSecret',
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false  
+  }
+));
 
-var sess = {
-  secret: 'conduit',
-  cookie: {maxAge: 6000},
-  resave: false,
-  saveUninitialized: false
-}
+// var sess = {
+//   secret: 'conduit',
+//   cookie: {maxAge: 6000},
+//   resave: false,
+//   saveUninitialized: false
+// }
 
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
-}
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1) // trust first proxy
+//   sess.cookie.secure = true // serve secure cookies
+// }
 
-app.use(session(sess))
+// app.use(session(sess))
 
 
 if (!isProduction) {
   app.use(errorhandler());
 }
 
-// if(isProduction){
-//   mongoose.connect(process.env.MONGOLAB_URI);
-// } else {
-//   mongoose.connect('mongodb://localhost/conduit');
-//   mongoose.set('debug', true);
-// }
+if(isProduction){
+  mongoose.connect(process.env.MONGOLAB_URI);
+} else {
+  mongoose.connect('mongodb://localhost/conduit');
+  mongoose.set('debug', true);
+}
 
-mongoose.connect(process.env.MONGOLAB_URI);
+// mongoose.connect(process.env.MONGOLAB_URI);
 
 
 require('./models/User');
