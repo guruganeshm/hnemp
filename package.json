@@ -1,7 +1,7 @@
 {
-  "name": "conduit-node",
+  "name": "Node Express API Server",
   "version": "1.0.0",
-  "description": "conduit on node",
+  "description": "Just description",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
