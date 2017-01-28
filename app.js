@@ -25,6 +25,21 @@ app.use(bodyParser.json());
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
+// var sess = {
+//     secret: 'conduit',
+//     cookie: { maxAge: 60000 },
+//     resave: false,
+//     saveUninitialized: false 
+// }
+ 
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1) // trust first proxy 
+//   sess.cookie.secure = true // serve secure cookies 
+// }
+ 
+// app.use(session(sess));
+
+
 app.use(session(
   { 
     secret: 'conduit',

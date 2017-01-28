@@ -11,12 +11,12 @@ function getTokenFromHeader(req){
 
 var auth = {
   required: jwt({
-    secret: 'secret',
+    secret: 'thisIsSecret',
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   optional: jwt({
-    secret: 'secret',
+    secret: 'thisIsSecret',
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeader
