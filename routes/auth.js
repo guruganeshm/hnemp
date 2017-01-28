@@ -11,12 +11,14 @@ function getTokenFromHeader(req){
 
 var auth = {
   required: jwt({
-    secret: secret: new Buffer('shared-secret', 'base64'),
+    // secret: secret: new Buffer('shared-secret', 'base64'),
+    secret: secret,
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   optional: jwt({
-    secret: secret: new Buffer('shared-secret', 'base64'),
+    // secret: secret: new Buffer('shared-secret', 'base64'),
+    secret: secret,
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeader
