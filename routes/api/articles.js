@@ -265,6 +265,7 @@ router.delete('/:article/comments/:comment', auth.required, function(req, res, n
       .then(Comment.find({_id: req.comment._id}).remove().exec())
       .then(function(){
         res.sendStatus(204);
+        res.json({msg: 'deleted successfully'});
       });
   } else {
     res.sendStatus(403);
