@@ -54,7 +54,7 @@ if (!isProduction) {
 }
 
 if(isProduction){
-  mongoose.connect('mongodb://guruganesh:guruganesh@123@ds019826.mlab.com:19826/evloapidb');
+  mongoose.connect(process.env.MONGODB_URI);
 } else {
   mongoose.connect('mongodb://localhost/conduit');
   mongoose.set('debug', true);
