@@ -244,8 +244,8 @@ router.post('/:article/comments', auth.required, function(req, res, next) {
     if(!user){ return res.sendStatus(401); }
 
     var comment = new Comment();
-    comment.body = req.body.comment;
-    comment.article = req.params.article;
+    comment.body = req.body.comment
+    comment.article = req.article;
     comment.author = user;
 
     return comment.save().then(function(){
