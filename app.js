@@ -34,20 +34,6 @@ app.use(session(
   }
 ));
 
-// var sess = {
-//   secret: 'conduit',
-//   cookie: {maxAge: 6000},
-//   resave: false,
-//   saveUninitialized: false
-// }
-
-// if (app.get('env') === 'production') {
-//   app.set('trust proxy', 1) // trust first proxy
-//   sess.cookie.secure = true // serve secure cookies
-// }
-
-// app.use(session(sess))
-
 
 if (!isProduction) {
   app.use(errorhandler());
@@ -59,8 +45,6 @@ if(isProduction){
   mongoose.connect('mongodb://localhost/conduit');
   mongoose.set('debug', true);
 }
-
-// mongoose.connect(process.env.MONGOLAB_URI);
 
 
 require('./models/User');
