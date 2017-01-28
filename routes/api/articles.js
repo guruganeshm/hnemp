@@ -243,8 +243,8 @@ router.post('/:article/comments', auth.required, function(req, res, next) {
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
-    var comment = new Comment(req.body.comment);
-    comment.article = req.article;
+    var comment = new Comment();
+    comment.comments = req.body.comment;
     comment.author = user;
 
     return comment.save().then(function(){
